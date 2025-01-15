@@ -16,10 +16,10 @@ As part of `Deliverable ⓵ Development deployment: JWT Pizza`, start up the app
 | Logout                                              | logout.jsx         |[DELETE]/api/auth  |  DELETE FROM auth WHERE token=?                |
 | View About page                                     | about.jsx                  |   none                |                  none                              |
 | View History page                                   |      history.jsx              |    none               |                none                                |
-| Login as franchisee<br/>(f@jwt.com, pw: franchisee) |                    |                   |                                                |
-| View franchise<br/>(as franchisee)                  |                    |                   |                                                |
-| Create a store                                      |                    |                   |                                                |
-| Close a store                                       |                    |                   |                                                |
+| Login as franchisee<br/>(f@jwt.com, pw: franchisee) |   login.jsx                 |    [PUT]/api/auth               | SELECT * FROM user WHERE email=?<br> SELECT * FROM userRole WHERE userId=?                                               |
+| View franchise<br/>(as franchisee)                  |    franchiseDashboard.jsx                |  [GET]/api/franchise                 |  SELECT objectId FROM userRole WHERE role='franchisee' AND userId=? <br/> SELECT id, name FROM franchise WHERE id in (${franchiseIds.join(',')})                                             |
+| Create a store                                      |  createStore.jsx                  |  [POST]/api/auth/franchiseid/store                 | SELECT u.id, u.name, u.email FROM userRole AS ur JOIN user AS u ON u.id=ur.userId WHERE ur.objectId=? AND ur.role='franchisee'                                               |
+| Close a store                                       | closeStore.jsx                   | [DELETE]api/franchise/franchiseid/store/storeid                  |  SELECT u.id, u.name, u.email FROM userRole AS ur JOIN user AS u ON u.id=ur.userId WHERE ur.objectId=? AND ur.role='franchisee'<br/> DELETE FROM store WHERE franchiseId=? AND id=?                                              |
 | Login as admin<br/>(a@jwt.com, pw: admin)           |                    |                   |                                                |
 | View Admin page                                     |                    |                   |                                                |
 | Create a franchise for t@jwt.com                    |                    |                   |                                                |
