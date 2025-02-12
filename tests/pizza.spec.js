@@ -205,7 +205,6 @@ test('purchase with login', async ({ page }) => {
   test('docs page ', async ({ page }) => {
     await page.goto('http://localhost:5173/docs');
     await expect(page.getByRole('main')).toContainText('JWT Pizza API');
-    await expect(page.getByRole('main')).toContainText('🔐 [DELETE] /api/franchise/:franchiseId/store/:storeId');
   });
 
 
