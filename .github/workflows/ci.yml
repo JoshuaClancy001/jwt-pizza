@@ -52,8 +52,8 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     environment:
-      name: production
-      url: https://pizza.jamplan.click
+      name: staging
+      url: https://stage-pizza.jamplan.click
     env:
       version: ${{needs.build.outputs.version}}
     steps:
